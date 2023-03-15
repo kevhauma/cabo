@@ -1,0 +1,132 @@
+general rules/goal
+
+each card has a value
+red king is best card: -1
+Ace to Black King -> 1 to 13
+Joker is 0 points
+
+goal: get as little score as possible (or make your opponents score higher)
+
+playstyle:
+- memorise cards across the board,
+- swap with potential better cards
+
+special features: 
+- Black King: swap with opponent (look at your card, then opponent card, can decline)
+- Jack and Queen: swap with opponent (no looky at your or opponent card)
+- 9-10: peak at opponent card
+- 7-8: peak at own card
+
+
+
+start with 4 cards, can have more or less
+all the cards are face down, except the open card
+
+stack -> remaining card pile
+open card -> last one added to discard pile
+discard pile -> becomes open card
+
+preparation stage:
+-> player gets 4 hidden cards
+-> player looks at one of their cards
+-> if card "matches" open card, they can discard it
+
+
+round stage:
+ - take open card, add it to your cards
+
+ - take card from stack and look at it
+	- swap with your card
+	- "use" card (if special feature)
+
+when open card changes (or player isn't actively swapping/looking at card)
+other players can "match" their card with the open card and discard them
+
+any mistakes: take another card
+
+ending stage:
+- player calls "swish swish", wiggles cards (just visual?)
+- remaining players continue one more round 
+	- no interaction with swish caller
+	- can call swish themselves (to avoid being messed with by remaining players)
+
+
+remaining questions:
+how do cards "match"? numbers, colors, suit? ON VALUE
+can that happen any round/between player switches or only at start
+
+what happends with cards that the special feature is used? back to the back of the stack
+does it become the open card? BECOMES OPEN CARD
+
+when the open card is taken? what replaces it? a card from the stack? 
+OPEN CARD BENEATH IT (if no card beneath, take one from the stack)
+
+(only applicable in online version)
+opponent sees what card is being peaked at?
+
+
+code features needed:
+
+
+COMMUNICATION:
+ - websockets
+	actions: 
+	 - join
+	 - game start
+	 - swap from stack
+	 - swap with oponent
+	 - look at card
+	 - discard card (matched)
+	 - take open card 
+	 - take stack
+	 - use card
+	 - swish
+ - rest:
+	rooms:
+	 - get
+	 - create
+	room:
+	 - get (gamestate)
+	 - gameview
+- views:
+	gamelist (amount of players, state?)
+	game pre-join
+	game itself
+	game end?
+
+
+STATES:
+- PRE-START
+- PREPARE
+- ROUND-DECISION
+- ROUND-ACTION
+- MATCH
+- SWISH-CALLED
+- SWISH-END
+
+game structure
+game:
+ - state
+ - cards:
+	- take pile
+	- discard pile (with open card)
+ - active player
+ - player:
+	- name
+	- cards
+ 	- (hidden) score (based on cards)
+	
+
+components:
+ - card:
+	- selected
+	- hidden
+	- view
+
+ - card deck (in middle)
+	- with open card
+	- with closed card
+
+ - player card deck
+	- consistent ordering
+
