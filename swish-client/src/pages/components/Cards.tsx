@@ -108,5 +108,5 @@ const Cards = {HA,
     SJ,
     SQ,
     SK}
-    console.log(Object.entries(Cards).map(([key,Card])=>({key,Card})))
+
     export default Object.entries(Cards).map(([key,Card])=>({key,Card}))
